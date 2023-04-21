@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MVC_News.Models.New>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "LastFive";
+}
+
+<h1  align="center" style="margin-bottom: 2rem">@Localizer["Fresh news"]</h1>
+
+<a style="margin-bottom: 2rem"  class="btn btn-outline-dark" asp-action="Client">@Localizer["See more"]</a>
+
+
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subtitle)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <img src="@item.NewPictureURL" alt="@item.Title"/>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

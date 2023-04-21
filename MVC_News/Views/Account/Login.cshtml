@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@model MVC_News.Models.Auth.LoginModel
+
+<h2 align="center" style="margin-bottom: 3rem">@Localizer["Enter in account"]</h2>
+
+<form asp-action="Login" asp-controller="Account" asp-anti-forgery="true" align="center">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="form-group" style="margin-bottom: 2rem">
+            <label asp-for="Email">@Localizer["Enter Email"]</label>
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div class="form-group" style="margin-bottom: 2rem">
+            <label asp-for="Password">@Localizer["Enter password"]</label>
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+        <div class="form-group" style="margin-bottom: 2rem">
+            <input type="submit" class="btn btn-outline-primary" value=@Localizer["Enter"] />
+        </div>
+    </div>
+    <a asp-action="Register" asp-controller="Account" class="btn btn-outline-dark">@Localizer["Register"]</a>
+</form>

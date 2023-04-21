@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MVC_News.Models.New>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center"  style="margin-bottom: 2rem">@Localizer["All news"]</h1>
+<p>
+    <a class ="btn btn-outline-primary" asp-action="Create">@Localizer["Create New"]</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Localizer["Title"]
+            </th>
+            <th>
+                @Localizer["Subtitle"]
+            </th>
+            <th>
+                @Localizer["Description"]
+            </th>
+            <th>
+                @Localizer["NewPictureURL"]
+            </th>
+            <th>
+                @Localizer["CreateDate"]
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Subtitle)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+                <td>
+                    <img src="@item.NewPictureURL" alt="@item.Title" style="max-width: 200px" />
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a> |
+                    <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a> |
+                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

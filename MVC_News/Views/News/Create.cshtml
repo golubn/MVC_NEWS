@@ -1,0 +1,54 @@
+﻿@model MVC_News.Models.New
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 align="center">@Localizer["Create"]</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Localizer["Title"]
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Localizer["Subtitle"]
+                <input asp-for="Subtitle" class="form-control" />
+                <span asp-validation-for="Subtitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Localizer["Description"]
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Localizer["NewPictureURL"]
+                <input asp-for="NewPictureURL" class="form-control" />
+                <span asp-validation-for="NewPictureURL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               @Localizer["CreateDate"]
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value=@Localizer["Create"] class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@Localizer["Back to List"]</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
